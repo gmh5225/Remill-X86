@@ -27,57 +27,54 @@ if(CMKR_ROOT_PROJECT)
 	configure_file(cmake.toml cmake.toml COPYONLY)
 endif()
 
-project(LL-Testing
-	DESCRIPTION
-		LL-Testing.
-)
+project(Remill-X86)
 
 # Packages
 find_package(LLVM REQUIRED CONFIG)
 
 find_package(Clang REQUIRED CONFIG)
 
-# Target LL-Testing
-set(CMKR_TARGET LL-Testing)
-set(LL-Testing_SOURCES "")
+# Target Remill-X86-bin
+set(CMKR_TARGET Remill-X86-bin)
+set(Remill-X86-bin_SOURCES "")
 
-list(APPEND LL-Testing_SOURCES
-	"src/main.cpp"
+list(APPEND Remill-X86-bin_SOURCES
+	"src/tool/main.cpp"
 )
 
-list(APPEND LL-Testing_SOURCES
+list(APPEND Remill-X86-bin_SOURCES
 	cmake.toml
 )
 
-set(CMKR_SOURCES ${LL-Testing_SOURCES})
-add_executable(LL-Testing)
+set(CMKR_SOURCES ${Remill-X86-bin_SOURCES})
+add_executable(Remill-X86-bin)
 
-if(LL-Testing_SOURCES)
-	target_sources(LL-Testing PRIVATE ${LL-Testing_SOURCES})
+if(Remill-X86-bin_SOURCES)
+	target_sources(Remill-X86-bin PRIVATE ${Remill-X86-bin_SOURCES})
 endif()
 
 get_directory_property(CMKR_VS_STARTUP_PROJECT DIRECTORY ${PROJECT_SOURCE_DIR} DEFINITION VS_STARTUP_PROJECT)
 if(NOT CMKR_VS_STARTUP_PROJECT)
-	set_property(DIRECTORY ${PROJECT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT LL-Testing)
+	set_property(DIRECTORY ${PROJECT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Remill-X86-bin)
 endif()
 
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${LL-Testing_SOURCES})
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${Remill-X86-bin_SOURCES})
 
 add_definitions(
 		${LLVM_DEFINITIONS}
 		${CLANG_DEFINITIONS}
 )
-target_include_directories(LL-Testing PRIVATE
+target_include_directories(Remill-X86-bin PRIVATE
 	${LLVM_INCLUDE_DIRS}
 	${CLANG_INCLUDE_DIRS}
 )
 
-target_link_directories(LL-Testing PRIVATE
+target_link_directories(Remill-X86-bin PRIVATE
 	${LLVM_LIBRARY_DIRS}
 	${CLANG_LIBRARY_DIRS}
 )
 
-target_link_libraries(LL-Testing PRIVATE
+target_link_libraries(Remill-X86-bin PRIVATE
 	LLVMSupport
 	LLVMAnalysis
 	LLVMCore
