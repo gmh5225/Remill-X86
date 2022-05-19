@@ -1,7 +1,6 @@
 # Reference: https://build-cpp.github.io/cmkr/cmake-toml
 [project]
-name = "cmkr-llvm-template"
-description = "cmkr-llvm-template"
+name = "Remill-X86"
 
 [find-package.LLVM]
 required = true
@@ -10,7 +9,7 @@ config = true
 required = true
 config = true
 
-[target.cmkr-llvm-template]
+[target.Remill-X86-bin]
 type = "executable"
 sources = ["src/main.cpp"]
 include-directories = ["${LLVM_INCLUDE_DIRS}", "${CLANG_INCLUDE_DIRS}"]
