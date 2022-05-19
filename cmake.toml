@@ -11,7 +11,7 @@ config = true
 
 [target.Remill-X86-bin]
 type = "executable"
-sources = ["src/main.cpp"]
+sources = ["src/tool/**.cpp", "src/tool/**.h"]
 include-directories = ["${LLVM_INCLUDE_DIRS}", "${CLANG_INCLUDE_DIRS}"]
 link-directories = ["${LLVM_LIBRARY_DIRS}", "${CLANG_LIBRARY_DIRS}"]
 add-definitions = ["${LLVM_DEFINITIONS}", "${CLANG_DEFINITIONS}"]
